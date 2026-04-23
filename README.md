@@ -18,6 +18,7 @@ make             # compile and run
 make run         # run only (error if exec not found)
 make compile     # compile only
 make clean       # delete the executable
+make test        # compile and run test, cleanup after
 ```
 
 ## Stack

@@ -1,12 +1,22 @@
 EXEC = insura_crm.exe
-SOURCES = $(wildcard src/*.cpp src/**/*.cpp)
+TEST_EXEC = insura_crm_test.exe
+
+SRC_MAIN = src/main.cpp
+COMMON_SOURCES = $(filter-out $(SRC_MAIN), $(wildcard src/*.cpp src/**/*.cpp))
+APP_SOURCES = $(COMMON_SOURCES) $(SRC_MAIN)
+TEST_SOURCES = $(COMMON_SOURCES) $(wildcard tests/*.cpp tests/**/*.cpp)
 
 all: compile run
+
+test: $(TEST_SOURCES)
+	g++ -D__TEST__ -Iinclude -Itests -o $(TEST_EXEC) $^
+	$(TEST_EXEC)
+	rm -f $(TEST_EXEC)
 
 run:
 	$(EXEC)
 
-compile: $(SOURCES)
+compile: $(APP_SOURCES)
 	g++ -Iinclude -o $(EXEC) $^
 
 clean: 
