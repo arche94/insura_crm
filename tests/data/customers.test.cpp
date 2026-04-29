@@ -7,15 +7,6 @@
 #include "data/Customer.hpp"
 #include "utils/IDGeneratorSingleton.hpp"
 
-void test_customers() {
-  std::cout << std::endl;
-  test_validators();
-  test_constructors();
-  test_getters();
-  test_setters();
-  std::cout << "Test Customers passed!" << std::endl;
-}
-
 void test_validators() {
   IDGeneratorSingleton* s = IDGeneratorSingleton::get_instance();
   Customer c(s, "Mario", "Rossi");
@@ -95,4 +86,13 @@ void test_setters() {
   assert(c.get_email() == "new@email.test");
 
   std::cout << "Customers > Test setters passed!" << std::endl;
+}
+
+void test_customers() {
+  std::cout << std::endl;
+  test_validators();
+  test_constructors();
+  test_getters();
+  test_setters();
+  std::cout << "Test Customers passed!" << std::endl;
 }
