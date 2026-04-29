@@ -9,7 +9,7 @@ TEST_SOURCES = $(COMMON_SOURCES) $(wildcard tests/*.cpp tests/**/*.cpp)
 all: compile run
 
 test: $(TEST_SOURCES)
-	g++ -D__TEST__ -Iinclude -Itests -o $(TEST_EXEC) $^
+	g++ -std=c++20 -D__TEST__ -Iinclude -Itests -o $(TEST_EXEC) $^
 	$(TEST_EXEC)
 	rm -f $(TEST_EXEC)
 
@@ -17,7 +17,7 @@ run:
 	$(EXEC)
 
 compile: $(APP_SOURCES)
-	g++ -Iinclude -o $(EXEC) $^
+	g++ -std=c++20 -Iinclude -o $(EXEC) $^
 
 clean: 
 	rm -f $(EXEC)
