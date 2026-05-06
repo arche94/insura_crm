@@ -2,6 +2,7 @@
 
 #include <optional>
 #include <unordered_map>
+#include <vector>
 
 template <typename T>
 class DataManager {
@@ -14,4 +15,5 @@ class DataManager {
   std::optional<T> get(int _id);
   void update(int _id, T _item);
   void remove(int _id);
+  std::vector<T> list();
 };

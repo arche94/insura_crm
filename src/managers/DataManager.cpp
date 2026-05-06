@@ -3,6 +3,7 @@
 #include <format>
 #include <optional>
 #include <stdexcept>
+#include <vector>
 
 template <typename T>
 void DataManager<T>::add(T _item) {
@@ -34,6 +35,17 @@ void DataManager<T>::remove(int _id) {
     throw std::runtime_error(
         std::format("[DataManager remove] Object with id {} not found", _id));
   }
+}
+
+template <typename T>
+std::vector<T> DataManager<T>::list() {
+  std::vector<T> out;
+  out.reserve(items.size());
+
+  for (auto item : items) {
+    out.push_back(item.second);
+  }
+  return out;
 }
 
 #include "data/Customer.hpp"
