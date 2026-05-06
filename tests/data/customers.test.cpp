@@ -88,11 +88,32 @@ void test_setters() {
   std::cout << "Customers > Test setters passed!" << std::endl;
 }
 
+void test_setter_validation() {
+  IDGeneratorSingleton* id_generator = IDGeneratorSingleton::get_instance();
+  Customer c(id_generator, "Mario", "Rossi", "+39333546987", "mario@rossi.it");
+
+  // Invalid email must not overwrite the existing value
+  c.set_email("bad-email");
+  assert(c.get_email() == "mario@rossi.it");
+
+  // Invalid phone must not overwrite the existing value
+  c.set_phone("abc");
+  assert(c.get_phone() == "+39333546987");
+
+  // Email over 254 chars must be rejected
+  std::string too_long_email = std::string(250, 'a') + "@t.co";  // 255 chars
+  c.set_email(too_long_email);
+  assert(c.get_email() == "mario@rossi.it");
+
+  std::cout << "Customers > Test setter validation rejection passed!" << std::endl;
+}
+
 void test_customers() {
   std::cout << std::endl;
   test_validators();
   test_constructors();
   test_getters();
   test_setters();
+  test_setter_validation();
   std::cout << "Test Customers passed!" << std::endl;
 }

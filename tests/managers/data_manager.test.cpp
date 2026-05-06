@@ -6,6 +6,7 @@
 #include <stdexcept>
 
 #include "data/Customer.hpp"
+#include "managers/CustomerManager.hpp"
 #include "managers/DataManager.hpp"
 #include "utils/IDGeneratorSingleton.hpp"
 
@@ -65,9 +66,31 @@ void test_customer_manager_full() {
   std::cout << "DataManager > Test full customer manager passed!" << std::endl;
 }
 
+void test_data_manager_list() {
+  DataManager<Customer> cm;
+  Customer c1(id_gen, "Mario", "Rossi"), c2(id_gen, "Luigi", "Verdi");
+  int c1_id = c1.get_id(), c2_id = c2.get_id();
+
+  cm.add(c1);
+  cm.add(c2);
+
+  std::vector<Customer> items = cm.list();
+  assert(items.size() == 2);
+
+  bool found_c1 = false, found_c2 = false;
+  for (auto& item : items) {
+    if (item.get_id() == c1_id) found_c1 = true;
+    if (item.get_id() == c2_id) found_c2 = true;
+  }
+  assert(found_c1 && found_c2);
+
+  std::cout << "DataManager > Test list passed!" << std::endl;
+}
+
 void test_data_manager() {
   std::cout << std::endl;
   test_customer_manager_empty();
   test_customer_manager_full();
+  test_data_manager_list();
   std::cout << "Test DataManager passed!" << std::endl;
 }
