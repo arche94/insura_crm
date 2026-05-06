@@ -57,7 +57,7 @@ void insura_ui::customer_menu() {
     std::cout << "2) Add customer" << std::endl;
     std::cout << "3) Edit customer" << std::endl;
     std::cout << "4) Remove customer" << std::endl;
-    std::cout << "5) Search customers" << std::endl;
+    std::cout << "5) Search customers (to be implemented)" << std::endl;
     std::cout << "6) Customer details" << std::endl;
     std::cout << "7) Return to main menu" << std::endl;
     std::cout << std::endl;
@@ -72,7 +72,6 @@ void insura_ui::customer_menu() {
       std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
       std::cout << "Invalid input. Please enter an integer value." << std::endl;
     } else {
-      // @debug issue linking customer_ui
       switch (option) {
         case 1:
           insura_ui::customer_ui::list();
