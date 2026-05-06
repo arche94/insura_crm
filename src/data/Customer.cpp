@@ -67,6 +67,5 @@ bool Customer::is_valid_email(std::string _email) {
 
 bool Customer::is_valid_phone(std::string _phone) {
   return !_phone.empty() &&
-         std::regex_match(_phone,
-                          std::regex(R"(^\+{1}(?:[0-9\-()\/.\s?]{6,15})$)"));
+         std::regex_match(_phone, std::regex(R"(^(\+)?\d{7,15}$)"));
 }
