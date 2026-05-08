@@ -2,7 +2,7 @@
 
 #include <bits/stdc++.h>
 
-IDGeneratorSingleton* IDGeneratorSingleton::_instance = NULL;
+IDGeneratorSingleton* IDGeneratorSingleton::_instance = nullptr;
 
 IDGeneratorSingleton::IDGeneratorSingleton() {
   last_customer_id = -1;
@@ -10,7 +10,7 @@ IDGeneratorSingleton::IDGeneratorSingleton() {
 }
 
 IDGeneratorSingleton* IDGeneratorSingleton::get_instance() {
-  if (_instance == NULL) {
+  if (_instance == nullptr) {
     _instance = new IDGeneratorSingleton();
   }
   return _instance;
