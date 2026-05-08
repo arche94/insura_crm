@@ -42,13 +42,13 @@ void insura_ui::customer_ui::add() {
 
   std::cout << "Add new customer" << std::endl << std::endl;
 
+  std::cin.ignore();
   std::cout << "First name: ";
-  std::cin >> first_name;
+  std::getline(std::cin, first_name);
 
   std::cout << "Last name: ";
-  std::cin >> last_name;
+  std::getline(std::cin, last_name);
 
-  std::cin.ignore();
   std::cout << "Phone number (optional): ";
   std::getline(std::cin, phone);
 
