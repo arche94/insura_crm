@@ -57,7 +57,7 @@ void insura_ui::customer_menu() {
     std::cout << "2) Add customer" << std::endl;
     std::cout << "3) Edit customer" << std::endl;
     std::cout << "4) Remove customer" << std::endl;
-    std::cout << "5) Search customers (to be implemented)" << std::endl;
+    std::cout << "5) Search customers" << std::endl;
     std::cout << "6) Customer details" << std::endl;
     std::cout << "7) Return to main menu" << std::endl;
     std::cout << std::endl;
@@ -86,7 +86,7 @@ void insura_ui::customer_menu() {
           insura_ui::customer_ui::remove();
           break;
         case 5:
-          std::cout << "Search customer flow" << std::endl;
+          insura_ui::customer_ui::search();
           break;
         case 6:
           insura_ui::customer_ui::details();

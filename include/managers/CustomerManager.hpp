@@ -12,4 +12,5 @@ class CustomerManager : public DataManager<Customer> {
   void update(int id, const std::string& first_name,
               const std::string& last_name, const std::string& phone,
               const std::string& email);
+  std::vector<Customer> search(std::string query);
 };

@@ -121,7 +121,43 @@ void insura_ui::customer_ui::remove() {
 }
 
 void insura_ui::customer_ui::search() {
+  std::string query;
+
   std::cout << "Search customers" << std::endl << std::endl;
+
+  std::cin.ignore();
+  std::cout << "Search: ";
+  std::getline(std::cin, query);
+
+  std::string sep = "| ";
+  std::vector<std::string> fields = {"ID", "First name", "Last name", "Phone",
+                                     "Email"};
+  std::vector<Customer> found = customer_manager->search(query);
+
+  if (found.size() == 0) {
+    std::cout << std::endl
+              << "No customer found for \"" << query << "\"" << std::endl
+              << std::endl;
+  } else {
+    std::cout << std::endl;
+    for (std::string f : fields) {
+      std::cout << sep << f << std::setw(10);
+    }
+    std::cout
+        << std::endl
+        << "---------------------------------------------------------------"
+           "-----------------"
+        << std::endl;
+
+    for (auto c : found) {
+      std::cout << sep << c.get_id() << std::setw(10);
+      std::cout << sep << c.get_first_name() << std::setw(10);
+      std::cout << sep << c.get_last_name() << std::setw(10);
+      std::cout << sep << c.get_phone() << std::setw(10);
+      std::cout << sep << c.get_email() << std::setw(10);
+      std::cout << std::endl;
+    }
+  }
 }
 
 void insura_ui::customer_ui::details() {

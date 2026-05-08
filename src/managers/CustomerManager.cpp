@@ -1,7 +1,9 @@
 #include "managers/CustomerManager.hpp"
 
+#include <cctype>
 #include <format>
 #include <stdexcept>
+#include <string>
 
 #include "utils/IDGeneratorSingleton.hpp"
 
@@ -29,4 +31,18 @@ void CustomerManager::update(int id, const std::string& first_name,
   if (!phone.empty()) c->set_phone(phone);
   if (!email.empty()) c->set_email(email);
   DataManager<Customer>::update(id, *c);
+}
+
+std::vector<Customer> CustomerManager::search(std::string query) {
+  std::vector<Customer> found;
+  std::transform(query.begin(), query.end(), query.begin(), ::tolower);
+
+  for (Customer c : list()) {
+    std::string f_name = c.get_full_name();
+    std::transform(f_name.begin(), f_name.end(), f_name.begin(), ::tolower);
+    if (f_name.find(query) != std::string::npos) {
+      found.push_back(c);
+    }
+  }
+  return found;
 }
