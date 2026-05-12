@@ -1,4 +1,4 @@
-#include "managers/customer_manager.test.hpp"
+#include "customer_manager.test.hpp"
 
 #include <bits/stdc++.h>
 
@@ -15,7 +15,7 @@ void test_customer_manager_add() {
   assert(c.get_email() == "luca@bianchi.it");
   assert(cm.get(c.get_id()) != std::nullopt);
 
-  std::cout << "CustomerManager > Test add return value passed!" << std::endl;
+  std::cout << "CustomerManager > Test add passed!" << std::endl;
 }
 
 void test_customer_manager_update() {
@@ -39,8 +39,7 @@ void test_customer_manager_update() {
   assert(updated->get_phone() == "+39333546987");
   assert(updated->get_email() == "mario@rossi.it");
 
-  std::cout << "CustomerManager > Test update selective skipping passed!"
-            << std::endl;
+  std::cout << "CustomerManager > Test update passed!" << std::endl;
 }
 
 void test_customer_manager_search() {

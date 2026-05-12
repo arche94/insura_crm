@@ -1,0 +1,1 @@
+void test_interaction_manager();

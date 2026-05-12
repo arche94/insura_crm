@@ -49,5 +49,7 @@ std::vector<T> DataManager<T>::list() {
 }
 
 #include "data/Customer.hpp"
+#include "data/Interaction.hpp"
 
 template class DataManager<Customer>;
+template class DataManager<Interaction>;
