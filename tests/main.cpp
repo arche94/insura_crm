@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 
 #include "./data/customers.test.hpp"
+#include "./data/interactions.test.hpp"
 #include "./managers/customer_manager.test.hpp"
 #include "./managers/data_manager.test.hpp"
 #include "./utils/id_generator_singleton.test.hpp"
@@ -15,6 +16,7 @@ int main() {
 
   test_id_generator_singleton();
   test_customers();
+  test_interactions();
   test_data_manager();
   test_customer_manager();
 
