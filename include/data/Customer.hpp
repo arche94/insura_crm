@@ -5,16 +5,6 @@
 #include "utils/IDGeneratorSingleton.hpp"
 
 class Customer {
- private:
-  int _id;
-  std::string first_name;
-  std::string last_name;
-  std::string phone;
-  std::string email;
-
-  bool is_valid_email(std::string _email);
-  bool is_valid_phone(std::string _phone);
-
  public:
   Customer(IDGeneratorSingleton* id_gen, std::string _first_name,
            std::string _last_name, std::string _phone = "",
@@ -31,7 +21,17 @@ class Customer {
   void set_email(std::string _email);
 
 #ifdef __TEST__
-  friend void test_validators();
-  friend void test_constructors();
+  friend void test_customers_validators();
+  friend void test_customers_constructors();
 #endif
+
+ private:
+  int _id;
+  std::string first_name;
+  std::string last_name;
+  std::string phone;
+  std::string email;
+
+  bool is_valid_email(std::string _email);
+  bool is_valid_phone(std::string _phone);
 };

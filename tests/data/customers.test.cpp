@@ -7,7 +7,7 @@
 #include "data/Customer.hpp"
 #include "utils/IDGeneratorSingleton.hpp"
 
-void test_validators() {
+void test_customers_validators() {
   IDGeneratorSingleton* s = IDGeneratorSingleton::get_instance();
   Customer c(s, "Mario", "Rossi");
   assert(c.is_valid_email("test@domain.com"));
@@ -19,7 +19,7 @@ void test_validators() {
   std::cout << "Customers > Test validators passed!" << std::endl;
 }
 
-void test_constructors() {
+void test_customers_constructors() {
   IDGeneratorSingleton* id_generator = IDGeneratorSingleton::get_instance();
   int next_id = id_generator->get_next_customer_id();
 
@@ -48,7 +48,7 @@ void test_constructors() {
   std::cout << "Customers > Test constructors passed!" << std::endl;
 }
 
-void test_getters() {
+void test_customers_getters() {
   IDGeneratorSingleton* id_generator = IDGeneratorSingleton::get_instance();
   int next_id = id_generator->get_next_customer_id();
 
@@ -64,7 +64,7 @@ void test_getters() {
   std::cout << "Customers > Test getters passed!" << std::endl;
 }
 
-void test_setters() {
+void test_customers_setters() {
   IDGeneratorSingleton* id_generator = IDGeneratorSingleton::get_instance();
   Customer c(id_generator, "Mario", "Gialli", "+333243454334",
              "m.gialli@test.it");
@@ -88,7 +88,7 @@ void test_setters() {
   std::cout << "Customers > Test setters passed!" << std::endl;
 }
 
-void test_setter_validation() {
+void test_customers_setter_validation() {
   IDGeneratorSingleton* id_generator = IDGeneratorSingleton::get_instance();
   Customer c(id_generator, "Mario", "Rossi", "+39333546987", "mario@rossi.it");
 
@@ -105,15 +105,16 @@ void test_setter_validation() {
   c.set_email(too_long_email);
   assert(c.get_email() == "mario@rossi.it");
 
-  std::cout << "Customers > Test setter validation rejection passed!" << std::endl;
+  std::cout << "Customers > Test setter validation rejection passed!"
+            << std::endl;
 }
 
 void test_customers() {
   std::cout << std::endl;
-  test_validators();
-  test_constructors();
-  test_getters();
-  test_setters();
-  test_setter_validation();
+  test_customers_validators();
+  test_customers_constructors();
+  test_customers_getters();
+  test_customers_setters();
+  test_customers_setter_validation();
   std::cout << "Test Customers passed!" << std::endl;
 }
