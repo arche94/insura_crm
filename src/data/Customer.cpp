@@ -58,6 +58,16 @@ void Customer::set_email(std::string _email) {
 
 // private
 bool Customer::is_valid_email(std::string _email) {
+  /** Validation logic
+   * - must start with letter or digit
+   * - allowed characters: letter, digit, ., _, -
+   * - must contain @
+   * - domain must start with letter or digit
+   * - domain allowed characters: letter, digit, ., _, -
+   * - must contain .
+   * - top-level domain at least 2 chars long
+   * - top-level domain allows only letters
+   */
   return !(_email.empty() || _email.size() < 6 || _email.size() > 254) &&
          std::regex_match(
              _email,
@@ -66,6 +76,11 @@ bool Customer::is_valid_email(std::string _email) {
 }
 
 bool Customer::is_valid_phone(std::string _phone) {
+  /** Validation logic
+   * - can contain + at start
+   * - only digits allowed
+   * - min 7 digits, max 15
+   */
   return !_phone.empty() &&
          std::regex_match(_phone, std::regex(R"(^(\+)?\d{7,15}$)"));
 }

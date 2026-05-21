@@ -24,7 +24,7 @@ void insura_ui::customer_ui::list() {
                "-----------------"
             << std::endl;
 
-  for (auto c : customers) {
+  for (Customer c : customers) {
     std::cout << sep << c.get_id() << std::setw(10);
     std::cout << sep << c.get_first_name() << std::setw(10);
     std::cout << sep << c.get_last_name() << std::setw(10);

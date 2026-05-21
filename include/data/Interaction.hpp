@@ -18,6 +18,8 @@ class Interaction {
   std::string get_notes();
   // requirements do not include setters
 
+  static std::string type2string(Types t);
+
  private:
   int _id;
   int customer_id;
