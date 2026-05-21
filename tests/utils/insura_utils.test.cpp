@@ -35,8 +35,19 @@ void test_parse_date() {
   std::cout << "Test Insura Utils > Test parse date passed!" << std::endl;
 }
 
+void test_date_to_string() {
+  std::string test_date = "2026-05-19";
+  std::time_t test_time = insura_utils::parse_date(test_date);
+  std::string out_date = insura_utils::date_to_str(test_time);
+
+  assert(out_date == test_date);
+
+  std::cout << "Test Insura Utils > Test date to string passed!" << std::endl;
+}
+
 void test_insura_utils() {
   std::cout << std::endl;
   test_parse_date();
+  test_date_to_string();
   std::cout << "Test Insura Utils passed!" << std::endl;
 }

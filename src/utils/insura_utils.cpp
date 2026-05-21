@@ -22,3 +22,12 @@ std::time_t insura_utils::parse_date(std::string s) {
   }
   return date;
 }
+
+std::string insura_utils::date_to_str(std::time_t t) {
+  size_t str_size = std::size("YYYY-mm-dd");
+  char buf[str_size];
+  std::tm* t_date = std::localtime(&t);
+  std::strftime(buf, str_size, "%Y-%m-%d", t_date);
+
+  return std::string(buf);
+}
