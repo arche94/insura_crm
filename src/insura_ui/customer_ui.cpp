@@ -8,23 +8,27 @@ void print_customers(std::vector<Customer> customers) {
   std::string sep = "| ";
   std::vector<std::string> fields = {"ID", "First name", "Last name", "Phone",
                                      "Email"};
+  std::vector<int> field_len = {10, 30, 30, 20, 30};
 
   std::cout << std::endl;
-  for (std::string f : fields) {
-    std::cout << sep << f << std::setw(10);
+  for (int i = 0; i < fields.size(); i++) {
+    std::cout << sep << fields[i]
+              << std::setw(field_len[i] - fields[i].length());
   }
-  std::cout << std::endl
-            << "---------------------------------------------------------------"
-               "-----------------"
-            << std::endl;
+  std::cout << sep << std::endl << std::string(120, '-') << std::endl;
 
   for (Customer c : customers) {
-    std::cout << sep << c.get_id() << std::setw(10);
-    std::cout << sep << c.get_first_name() << std::setw(10);
-    std::cout << sep << c.get_last_name() << std::setw(10);
-    std::cout << sep << c.get_phone() << std::setw(10);
-    std::cout << sep << c.get_email() << std::setw(10);
-    std::cout << std::endl;
+    std::cout << sep << c.get_id()
+              << std::setw(field_len[0] - std::to_string(c.get_id()).length());
+    std::cout << sep << c.get_first_name()
+              << std::setw(field_len[1] - c.get_first_name().length());
+    std::cout << sep << c.get_last_name()
+              << std::setw(field_len[2] - c.get_last_name().length());
+    std::cout << sep << c.get_phone()
+              << std::setw(field_len[3] - c.get_phone().length());
+    std::cout << sep << c.get_email()
+              << std::setw(field_len[4] - c.get_email().length());
+    std::cout << sep << std::endl;
   }
 }
 

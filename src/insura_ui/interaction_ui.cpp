@@ -11,22 +11,31 @@ void print_interactions(std::vector<Interaction> interactions) {
   std::string sep = "| ";
   std::vector<std::string> fields = {"ID", "CustomerID", "Date", "Type",
                                      "Notes"};
-  for (std::string f : fields) {
-    std::cout << sep << f << std::setw(10);
+  std::vector<int> field_len = {10, 15, 20, 20, 40};
+
+  std::cout << std::endl;
+  for (int i = 0; i < fields.size(); i++) {
+    std::cout << sep << fields[i]
+              << std::setw(field_len[i] - fields[i].length());
   }
-  std::cout << std::endl
-            << "---------------------------------------------------------------"
-               "-----------------"
-            << std::endl;
+  std::cout << sep << std::endl << std::string(105, '-') << std::endl;
 
   for (Interaction i : interactions) {
-    std::cout << sep << i.get_id() << std::setw(10);
-    std::cout << sep << i.get_customer_id() << std::setw(10);
-    std::cout << sep << insura_utils::date_to_str(i.get_date())
-              << std::setw(10);
-    std::cout << sep << Interaction::type2string(i.get_type()) << std::setw(10);
-    std::cout << sep << i.get_notes() << std::setw(10);
-    std::cout << std::endl;
+    std::string date_string = insura_utils::date_to_str(i.get_date());
+    std::string type_string = Interaction::type2string(i.get_type());
+
+    std::cout << sep << i.get_id()
+              << std::setw(field_len[0] - std::to_string(i.get_id()).length());
+    std::cout << sep << i.get_customer_id()
+              << std::setw(field_len[1] -
+                           std::to_string(i.get_customer_id()).length());
+    std::cout << sep << date_string
+              << std::setw(field_len[2] - date_string.length());
+    std::cout << sep << type_string
+              << std::setw(field_len[3] - type_string.length());
+    std::cout << sep << i.get_notes()
+              << std::setw(field_len[4] - i.get_notes().length());
+    std::cout << sep << std::endl;
   }
 }
 
@@ -37,8 +46,6 @@ void insura_ui::interaction_ui::list() {
   std::cout << "List interactions" << std::endl << std::endl;
 
   std::vector<Interaction> interactions = interaction_manager->list();
-
-  std::cout << std::endl;
   print_interactions(interactions);
 }
 
@@ -69,18 +76,26 @@ void insura_ui::interaction_ui::add() {
   while (!type_valid) {
     std::cout << "Type: ";
     std::cin >> type_buf;
-    switch (type_buf) {
-      case 1:
-        type = Interaction::Types::CONTRACT;
-        type_valid = true;
-        break;
-      case 2:
-        type = Interaction::Types::MEETING;
-        type_valid = true;
-        break;
-      default:
-        std::cout << "Invalid type!" << std::endl;
-        break;
+    std::cout << std::endl;
+
+    if (std::cin.fail()) {
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      std::cout << "Invalid input. Please enter an integer value." << std::endl;
+    } else {
+      switch (type_buf) {
+        case 1:
+          type = Interaction::Types::CONTRACT;
+          type_valid = true;
+          break;
+        case 2:
+          type = Interaction::Types::MEETING;
+          type_valid = true;
+          break;
+        default:
+          std::cout << "Invalid option." << std::endl;
+          break;
+      }
     }
   }
 
