@@ -6,6 +6,7 @@
 #include "./managers/data_manager.test.hpp"
 #include "./managers/interaction_manager.test.hpp"
 #include "./utils/id_generator_singleton.test.hpp"
+#include "./utils/insura_utils.test.hpp"
 
 using namespace std;
 
@@ -16,6 +17,7 @@ int main() {
        << "----------------------------------------------------------" << endl;
 
   test_id_generator_singleton();
+  test_insura_utils();
   test_customers();
   test_interactions();
   test_data_manager();
