@@ -4,16 +4,10 @@
 
 #include "managers/CustomerManager.hpp"
 
-CustomerManager* insura_ui::customer_ui::customer_manager =
-    new CustomerManager();
-
-void insura_ui::customer_ui::list() {
-  std::cout << "List customers" << std::endl << std::endl;
-
+void print_customers(std::vector<Customer> customers) {
   std::string sep = "| ";
   std::vector<std::string> fields = {"ID", "First name", "Last name", "Phone",
                                      "Email"};
-  std::vector<Customer> customers = customer_manager->list();
 
   std::cout << std::endl;
   for (std::string f : fields) {
@@ -32,6 +26,16 @@ void insura_ui::customer_ui::list() {
     std::cout << sep << c.get_email() << std::setw(10);
     std::cout << std::endl;
   }
+}
+
+CustomerManager* insura_ui::customer_ui::customer_manager =
+    new CustomerManager();
+
+void insura_ui::customer_ui::list() {
+  std::cout << "List customers" << std::endl << std::endl;
+
+  std::vector<Customer> customers = customer_manager->list();
+  print_customers(customers);
 }
 
 void insura_ui::customer_ui::add() {
@@ -129,9 +133,6 @@ void insura_ui::customer_ui::search() {
   std::cout << "Search: ";
   std::getline(std::cin, query);
 
-  std::string sep = "| ";
-  std::vector<std::string> fields = {"ID", "First name", "Last name", "Phone",
-                                     "Email"};
   std::vector<Customer> found = customer_manager->search(query);
 
   if (found.size() == 0) {
@@ -139,24 +140,7 @@ void insura_ui::customer_ui::search() {
               << "No customer found for \"" << query << "\"" << std::endl
               << std::endl;
   } else {
-    std::cout << std::endl;
-    for (std::string f : fields) {
-      std::cout << sep << f << std::setw(10);
-    }
-    std::cout
-        << std::endl
-        << "---------------------------------------------------------------"
-           "-----------------"
-        << std::endl;
-
-    for (auto c : found) {
-      std::cout << sep << c.get_id() << std::setw(10);
-      std::cout << sep << c.get_first_name() << std::setw(10);
-      std::cout << sep << c.get_last_name() << std::setw(10);
-      std::cout << sep << c.get_phone() << std::setw(10);
-      std::cout << sep << c.get_email() << std::setw(10);
-      std::cout << std::endl;
-    }
+    print_customers(found);
   }
 }
 

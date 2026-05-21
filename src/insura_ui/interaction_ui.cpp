@@ -7,18 +7,10 @@
 #include "managers/InteractionManager.hpp"
 #include "utils/insura_utils.hpp"
 
-InteractionManager* insura_ui::interaction_ui::interaction_manager =
-    new InteractionManager();
-
-void insura_ui::interaction_ui::list() {
-  std::cout << "List interactions" << std::endl << std::endl;
-
+void print_interactions(std::vector<Interaction> interactions) {
   std::string sep = "| ";
   std::vector<std::string> fields = {"ID", "CustomerID", "Date", "Type",
                                      "Notes"};
-  std::vector<Interaction> interactions = interaction_manager->list();
-
-  std::cout << std::endl;
   for (std::string f : fields) {
     std::cout << sep << f << std::setw(10);
   }
@@ -34,8 +26,20 @@ void insura_ui::interaction_ui::list() {
               << std::setw(10);
     std::cout << sep << Interaction::type2string(i.get_type()) << std::setw(10);
     std::cout << sep << i.get_notes() << std::setw(10);
+    std::cout << std::endl;
   }
+}
+
+InteractionManager* insura_ui::interaction_ui::interaction_manager =
+    new InteractionManager();
+
+void insura_ui::interaction_ui::list() {
+  std::cout << "List interactions" << std::endl << std::endl;
+
+  std::vector<Interaction> interactions = interaction_manager->list();
+
   std::cout << std::endl;
+  print_interactions(interactions);
 }
 
 void insura_ui::interaction_ui::add() {
@@ -91,4 +95,22 @@ void insura_ui::interaction_ui::add() {
             << std::endl;
 }
 
-void insura_ui::interaction_ui::search() {}
+void insura_ui::interaction_ui::search() {
+  int customer_id;
+
+  std::cout << "Search interactions" << std::endl << std::endl;
+
+  std::cout << "Select customer: ";
+  std::cin >> customer_id;
+
+  std::vector<Interaction> found = interaction_manager->search(customer_id);
+
+  if (found.size() == 0) {
+    std::cout << std::endl
+              << "No interaction found for customer " << customer_id
+              << std::endl
+              << std::endl;
+  } else {
+    print_interactions(found);
+  }
+}

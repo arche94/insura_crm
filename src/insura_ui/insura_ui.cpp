@@ -7,7 +7,9 @@
 #include "insura_ui/interaction_ui.hpp"
 
 void insura_ui::main_menu() {
-  std::cout << "Welcome into Insura CRM!" << std::endl << std::endl;
+  std::cout << std::endl
+            << "WELCOME INTO INSURA CRM!" << std::endl
+            << std::endl;
 
   bool running = true;
   while (running) {
@@ -139,7 +141,7 @@ void insura_ui::interaction_menu() {
           insura_ui::interaction_ui::add();
           break;
         case 3:
-          std::cout << "Search customer interaction" << std::endl;
+          insura_ui::interaction_ui::search();
           break;
         case 0:
           in_interaction = false;
