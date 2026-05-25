@@ -17,7 +17,7 @@ run:
 	$(EXEC)
 
 compile: $(APP_SOURCES)
-	g++ -std=c++20 -Iinclude -o $(EXEC) $^
+	g++ -std=c++20 -Iinclude -o $(EXEC) $^ -static-libgcc -static-libstdc++
 
 clean: 
 	rm -f $(EXEC)
