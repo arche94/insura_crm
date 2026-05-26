@@ -26,4 +26,4 @@ make test        # compile and run test, cleanup after
 | Layer | Choice |
 | ----- | ------ |
 | Code  | C++    |
-| Data  | JSON   |
+| Data  | CSV    |
