@@ -17,8 +17,11 @@ class Interaction {
   Types get_type();
   std::string get_notes();
   // requirements do not include setters
+  std::string to_csv();
 
   static std::string type2string(Types t);
+  static Interaction::Types string2type(std::string s);
+  static Interaction from_csv(std::string s);
 
  private:
   int _id;
@@ -26,4 +29,7 @@ class Interaction {
   std::time_t date;
   Types type;
   std::string notes;
+
+  Interaction(int id, int _customer_id, std::time_t _date, Types _type,
+              std::string _notes = "");
 };

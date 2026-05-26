@@ -32,8 +32,7 @@ void print_customers(std::vector<Customer> customers) {
   }
 }
 
-CustomerManager* insura_ui::customer_ui::customer_manager =
-    new CustomerManager();
+CustomerManager* insura_ui::customer_ui::customer_manager = nullptr;
 
 void insura_ui::customer_ui::list() {
   std::cout << "List customers" << std::endl << std::endl;

@@ -19,6 +19,9 @@ class Customer {
   void set_last_name(std::string _last_name);
   void set_phone(std::string _phone);
   void set_email(std::string _email);
+  std::string to_csv();
+
+  static Customer from_csv(std::string s);
 
 #ifdef __TEST__
   friend void test_customers_validators();
@@ -31,6 +34,9 @@ class Customer {
   std::string last_name;
   std::string phone;
   std::string email;
+
+  Customer(int id, std::string _first_name, std::string _last_name,
+           std::string _phone = "", std::string _email = "");
 
   bool is_valid_email(std::string _email);
   bool is_valid_phone(std::string _phone);

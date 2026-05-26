@@ -7,6 +7,11 @@
 
 #include "utils/IDGeneratorSingleton.hpp"
 
+Customer CustomerManager::add(Customer c) {
+  DataManager<Customer>::add(c);
+  return c;
+}
+
 Customer CustomerManager::add(const std::string& first_name,
                               const std::string& last_name,
                               const std::string& phone,

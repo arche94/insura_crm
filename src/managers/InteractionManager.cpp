@@ -7,6 +7,11 @@
 #include "data/Interaction.hpp"
 #include "utils/IDGeneratorSingleton.hpp"
 
+Interaction InteractionManager::add(Interaction i) {
+  DataManager<Interaction>::add(i);
+  return i;
+}
+
 Interaction InteractionManager::add(int _customer_id, std::time_t _date,
                                     Interaction::Types _type,
                                     const std::string& _notes) {

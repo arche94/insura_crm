@@ -39,8 +39,7 @@ void print_interactions(std::vector<Interaction> interactions) {
   }
 }
 
-InteractionManager* insura_ui::interaction_ui::interaction_manager =
-    new InteractionManager();
+InteractionManager* insura_ui::interaction_ui::interaction_manager = nullptr;
 
 void insura_ui::interaction_ui::list() {
   std::cout << "List interactions" << std::endl << std::endl;

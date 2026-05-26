@@ -25,6 +25,23 @@ Customer::Customer(IDGeneratorSingleton* id_gen, std::string _first_name,
   }
 }
 
+Customer::Customer(int id, std::string _first_name, std::string _last_name,
+                   std::string _phone, std::string _email) {
+  _id = id;
+  first_name = _first_name;
+  last_name = _last_name;
+  if (is_valid_phone(_phone)) {
+    phone = _phone;
+  } else {
+    phone = "";
+  }
+  if (is_valid_email(_email)) {
+    email = _email;
+  } else {
+    email = "";
+  }
+}
+
 // public
 int Customer::get_id() { return _id; }
 
@@ -54,6 +71,28 @@ void Customer::set_email(std::string _email) {
   if (is_valid_email(_email)) {
     email = _email;
   }
+}
+
+std::string Customer::to_csv() {
+  return std::to_string(_id) + "," + first_name + "," + last_name + "," +
+         phone + "," + email;
+}
+
+Customer Customer::from_csv(std::string s) {
+  std::vector<std::string> row;
+  std::string field;
+
+  std::stringstream ss(s);
+  while (std::getline(ss, field, ',')) {
+    row.push_back(field);
+  }
+
+  int id = std::stoi(row[0]);
+  std::string _first_name = row[1];
+  std::string _last_name = row[2];
+  std::string _phone = (row.size() > 3) ? row[3] : "";
+  std::string _email = (row.size() > 4) ? row[4] : "";
+  return Customer(id, _first_name, _last_name, _phone, _email);
 }
 
 // private
