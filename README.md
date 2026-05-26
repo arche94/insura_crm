@@ -7,7 +7,7 @@ Customer Relationship Manager developed for the Master in AI Engineering by Prof
 To run this project, you need to compile it into an executable.
 
 ```bash
-g++ -o insura_crm.exe -Iinclude $(find src -name "*.cpp")
+g++ -o insura_crm.exe -Iinclude $(find src -name "*.cpp") -std=c++20
 ./insura_crm.exe
 ```
 
