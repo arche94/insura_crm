@@ -25,3 +25,11 @@ int IDGeneratorSingleton::get_next_interaction_id() {
   last_interaction_id++;
   return last_interaction_id;
 }
+
+void IDGeneratorSingleton::set_last_customer_id(int _id) {
+  last_customer_id = _id;
+}
+
+void IDGeneratorSingleton::set_last_interaction_id(int _id) {
+  last_interaction_id = _id;
+}

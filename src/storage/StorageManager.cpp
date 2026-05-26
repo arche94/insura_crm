@@ -10,6 +10,7 @@
 #include "data/Interaction.hpp"
 #include "managers/CustomerManager.hpp"
 #include "managers/InteractionManager.hpp"
+#include "utils/IDGeneratorSingleton.hpp"
 
 namespace fs = std::filesystem;
 
@@ -61,6 +62,9 @@ void StorageManager::load_data() {
     throw std::runtime_error("No dump file found");
   }
 
+  std::vector<int> cust_ids;
+  std::vector<int> inter_ids;
+
   std::ifstream in_stream;
   std::string line;
 
@@ -69,6 +73,7 @@ void StorageManager::load_data() {
     if (line.empty()) continue;
     Customer cust = Customer::from_csv(line);
     customer_manager->add(cust);
+    cust_ids.push_back(cust.get_id());
   }
   in_stream.close();
 
@@ -77,6 +82,13 @@ void StorageManager::load_data() {
     if (line.empty()) continue;
     Interaction inter = Interaction::from_csv(line);
     interaction_manager->add(inter);
+    inter_ids.push_back(inter.get_id());
   }
   in_stream.close();
+
+  IDGeneratorSingleton* id_gen = IDGeneratorSingleton::get_instance();
+  id_gen->set_last_customer_id(
+      *std::max_element(cust_ids.begin(), cust_ids.end()));
+  id_gen->set_last_interaction_id(
+      *std::max_element(inter_ids.begin(), inter_ids.end()));
 }

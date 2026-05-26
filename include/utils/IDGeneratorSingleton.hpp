@@ -13,4 +13,6 @@ class IDGeneratorSingleton {
   void operator=(IDGeneratorSingleton& s) = delete;
   int get_next_customer_id();
   int get_next_interaction_id();
+  void set_last_customer_id(int _id);
+  void set_last_interaction_id(int _id);
 };
