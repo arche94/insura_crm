@@ -45,6 +45,7 @@ std::vector<T> DataManager<T>::list() {
   for (auto item : items) {
     out.push_back(item.second);
   }
+  std::sort(out.begin(), out.end());
   return out;
 }
 

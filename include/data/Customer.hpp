@@ -21,6 +21,8 @@ class Customer {
   void set_email(std::string _email);
   std::string to_csv();
 
+  bool operator<(const Customer& c);
+
   static Customer from_csv(std::string s);
 
 #ifdef __TEST__

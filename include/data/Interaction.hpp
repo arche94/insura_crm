@@ -19,6 +19,8 @@ class Interaction {
   // requirements do not include setters
   std::string to_csv();
 
+  bool operator<(const Interaction& i);
+
   static std::string type2string(Types t);
   static Interaction::Types string2type(std::string s);
   static Interaction from_csv(std::string s);

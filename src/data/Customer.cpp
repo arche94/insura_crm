@@ -78,6 +78,8 @@ std::string Customer::to_csv() {
          phone + "," + email;
 }
 
+bool Customer::operator<(const Customer& c) { return _id < c._id; }
+
 Customer Customer::from_csv(std::string s) {
   std::vector<std::string> row;
   std::string field;

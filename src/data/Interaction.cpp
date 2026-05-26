@@ -39,6 +39,8 @@ std::string Interaction::to_csv() {
          notes;
 }
 
+bool Interaction::operator<(const Interaction& i) { return _id < i._id; }
+
 std::string Interaction::type2string(Interaction::Types t) {
   switch (t) {
     case Types::CONTRACT:
